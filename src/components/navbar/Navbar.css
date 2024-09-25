@@ -1,0 +1,16 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: calc(100vw - 60px);
+    color: #9181F4;
+}
+
+.navbar-subcontainer {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar-subcontainer > a {
+    text-decoration: none;
+}
