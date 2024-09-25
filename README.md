@@ -17,7 +17,10 @@ Para executar propriamente a aplicação, é necessário iniciar o back-end com 
 
  `RF01 - Cadastro de Denúncias Anônimas`
 
- `Styled-Component: biblioteca do React para estilizar os componentes em escopo fechado com o intuito de não vazar as classes e estilos para outros componentes.`
+ `A aplicação terá três tipos de usuários:
+ Fiscal: Responsável por checar e conduzir a denúncia.
+ Biólogo: Responsável por fornecer um parecer técnico sobre o impacto ambiental da denúncia.
+ Admin: Tem controle total sobre a aplicação, podendo registrar ou deletar fiscais e biólogos.`
  
  `Reat-router-dom: biblioteca do React para administrar a navegação entre páginas da aplicação.`
 
