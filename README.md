@@ -1,4 +1,4 @@
-* [Título](#Título) <h1 align="center">Aplicação - uClimate (Front-End)</h1>
+* [Título](#Título) <h1 align="center">Aplicação - EcoVOZ (Front-End)</h1>
 
 * [Status do Projeto](#Status-do-Projeto)
 
