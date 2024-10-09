@@ -1,3 +1,133 @@
-.home-container {
-    padding: 30px 30px;
+.home-big-container {
+    padding: 30px 40px;
+    min-height: 100vh;
+    background-color: #f7f4f4;
+}
+
+.home-first-section-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 250px;
+}
+
+.home-first-section-subcontainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    gap: 30px;
+}
+
+.home-first-section-title {
+    color: #9181F4;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.home-first-section-paragraph {
+    width: 80%;
+    color: #7f8081;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.home-first-section-button {
+    background-color: #6957df;
+    padding: 18px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.home-first-section-span {
+    font-size: 14px;
+    color: #9181F4;
+}
+
+.home-first-section-image-container {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+}
+
+.home-first-section-image {
+    width: 500px;
+    height: 340px;
+    border-radius: 16px;
+}
+
+.home-second-section-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 370px;
+    margin-bottom: 300px;
+}
+
+.home-second-section-left-subcontainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    gap: 30px;
+}
+
+.home-second-section-left-title {
+    color: #9181F4;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 36px;
+    width: 80%;
+}
+
+.home-second-section-left-paragraph {
+    color: #7f8081;
+    line-height: 36px;
+    font-size: 20px;
+    width: 80%;
+}
+
+.home-second-section-image {
+    border-radius: 16px;
+    border: 1px solid black;
+}
+
+.home-second-section-right-subcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    width: 40%;
+    margin-left: 100px;
+}
+
+.home-second-section-right-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 80%;
+}
+
+.home-second-section-right-item-title {
+    color: #9181F4;
+}
+
+.home-second-section-right-item-paragraph {
+    color: #7f8081;
+    font-size: 20px;
+}
+
+.home-third-section-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 30px;
 }
