@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: calc(100vw - 90px);
+    padding: 30px 40px;
     color: #9181F4;
 }
 
