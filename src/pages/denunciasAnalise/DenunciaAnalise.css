@@ -1,0 +1,14 @@
+.denuncia-analise-big-container {
+    min-height: 100vh;
+    background-color: #f7f4f4;
+}
+
+.denuncia-analise-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+    margin-top: 100px;
+    padding: 0 40px;
+}
