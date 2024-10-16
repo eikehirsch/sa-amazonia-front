@@ -1,5 +1,6 @@
 import Navbar from "../../components/navbar/Navbar";
 import AccordionExpandIcon from "../../components/accordion/AccordionExpandIcon";
+import { Link } from "react-router-dom";
 
 import "./Home.css";
 
@@ -19,9 +20,11 @@ const Home = () => {
             conscientização. A ação cidadã que garante um futuro sustentável
             para todos.
           </p>
-          <button className="home-first-section-button">
-            Faça uma denúncia agora.
-          </button>
+          <Link to="/create-denuncia">
+            <button className="home-first-section-button">
+              Faça uma denúncia agora.
+            </button>
+          </Link>
           <span className="home-first-section-span">
             Ajude-nos a proteger o meio.
           </span>

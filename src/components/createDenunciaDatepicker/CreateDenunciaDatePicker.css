@@ -1,0 +1,17 @@
+.custom-datepicker {
+    border: 1px solid #9181f4;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.custom-calendar {
+    background-color: #9181f4;
+}
+
+.custom-day {
+    color: #9181f4;
+}
+
+.custom-day:hover {
+    background-color: #9181f4;
+}

@@ -1,12 +1,20 @@
-import "./Register.css"
 import { Link } from "react-router-dom"
+import "./RegisterFiscal.css"
 
 function Register() {
   return (
     <div className='register-big-container'>
       <div className='register-main-container'>
-        <h1 className="register-title">CADASTRO</h1>
-        <p className="paragraph">Preenche os campos abaixo para concluir o cadastro</p>
+        <div className="buttons-register-container">
+          <Link to="/register-fiscal">
+            <button className="button-register-active">Registrando fiscal</button>
+          </Link>
+          <Link to="/register-biologo">
+            <button className="button-register-inactive">Clique para registrar biólogo</button>
+          </Link>
+        </div>
+        <h1 className="register-title">CADASTRO DE FISCAL</h1>
+        <p className="paragraph">Preenche os campos abaixo para concluir o cadastro do novo fiscal</p>
         <div className="inputs-container">
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
@@ -41,12 +49,12 @@ function Register() {
             <input className='input-register' type="text" placeholder='Confirmar senha' />
           </div>
         </div>
-        <button className="register-button">
-          Cadastro
+        <button className="register-fiscal-button">
+          CADASTRAR
         </button>
-        <Link to="/login">
+        {/* <Link to="/login">
           <p className='register-register-paragraph'>Já possui conta? Clique para entrar.</p>
-        </Link>
+        </Link> */}
       </div>
       <img className='register-image' src="./register-imagem.png" alt="" />
     </div>

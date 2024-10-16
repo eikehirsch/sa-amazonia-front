@@ -4,6 +4,12 @@
     align-items: center;
     padding: 30px 40px;
     color: #9181F4;
+    border-bottom: 1px solid black;
+}
+
+.navbar > a {
+    text-decoration: none;
+    color: #7d64d6;
 }
 
 .navbar-subcontainer {
@@ -13,11 +19,11 @@
     color: #9181F4;
 }
 
-.navbar-subcontainer > a {
+.navbar-subcontainer>a {
     text-decoration: none;
     color: #7d64d6;
 }
 
-.navbar-subcontainer > a:hover {
+.navbar-subcontainer>a:hover {
     text-decoration: underline;
 }

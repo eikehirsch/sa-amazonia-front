@@ -5,3 +5,9 @@
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
+
+.MuiTableCell-head {
+  background-color: #d2cbfc !important;
+  color: black !important;
+  font-weight: bold !important;
+}
