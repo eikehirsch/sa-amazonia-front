@@ -1,0 +1,109 @@
+.edit-big-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.edit-main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 100vh;
+    gap: 14px;
+    width: 50%;
+}
+
+.button-edit-active {
+    background-color: white;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #6957df;
+    color: #6957df;
+    font-weight: 700;
+    width: 170px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.button-edit-inactive {
+    background-color: #6957df;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    width: 170px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.buttons-edit-container {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-title {
+    margin-top: 20px;
+    color: #9181F4;
+}
+
+.edit-paragraph {
+
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+    margin-top: 10px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background-color: #ebe3fc;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.edit-input-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.input-edit {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: 6px;
+}
+
+.input-edit::placeholder {
+    color: black;
+}
+
+.input-edit:focus {
+    border: none; /* Remove a borda ao focar */
+    box-shadow: none; /* Remove qualquer sombra */
+    outline: none;
+}
+
+.edit-biologo-button {
+    background-color: #6957df;
+    padding: 14px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    min-width: 380px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.edit-image {
+    width: 45%;
+    max-height: 100vh;
+}

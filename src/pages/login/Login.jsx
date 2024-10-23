@@ -20,7 +20,7 @@ function Login() {
                 <button className="login-button">
                     Entrar
                 </button>
-                <Link to="/register">
+                <Link to="/register-fiscal">
                     <p className='login-register-paragraph'>Não possui conta? Clique para criar.</p>
                 </Link>
             </div>

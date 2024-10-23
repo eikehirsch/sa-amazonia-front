@@ -25,11 +25,11 @@ export default function BasicTable() {
             <Table sx={{ minWidth: 650}} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Título da denúncia</TableCell>
-                        <TableCell align="center">Fiscal responsável</TableCell>
-                        <TableCell align="center">Biólogo responsável</TableCell>
-                        <TableCell align="center">Status</TableCell>
-                        <TableCell align="center">Data de registro</TableCell>
+                        <TableCell>TÍTULO DA DENÚNCIA</TableCell>
+                        <TableCell align="center">FISCAL RESPONSÁVEL</TableCell>
+                        <TableCell align="center">BIÓLOGO RESPONSÁVEL</TableCell>
+                        <TableCell align="center">STATUS</TableCell>
+                        <TableCell align="center">DATA DE REGISTRO</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

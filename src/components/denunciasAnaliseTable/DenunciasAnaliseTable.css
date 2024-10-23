@@ -1,0 +1,23 @@
+.gerenciar-funcionario-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.designar-funcionario-button {
+    color: white;
+    background-color: rgb(106, 106, 248);
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deletar-funcionario-button {
+    color: white;
+    background-color: red;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

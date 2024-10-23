@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Navbar from '../../components/navbar/Navbar'
+import DenunciasAnaliseTable from "../../components/denunciasAnaliseTable/DenunciasAnaliseTable"
+
 import "./DenunciaAnalise.css"
 
 function DenunciaAnalise() {
@@ -11,6 +13,7 @@ function DenunciaAnalise() {
                 <h1 className="denuncia-analise-title">
                     Análise de denúncias ambientais por região
                 </h1>
+                <DenunciasAnaliseTable />
             </div>
         </div>
     )
