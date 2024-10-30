@@ -10,9 +10,9 @@ function Navbar() {
       </Link>
       <div className='navbar-subcontainer'>
         <Link to="/login">Entrar</Link>
-        <Link to="/contato">Apoio</Link>
-        <Link to="/generica">Sobre</Link>
-        <Link to="/final">Contato</Link>
+        <Link to="/">Apoio</Link>
+        <Link to="/">Sobre</Link>
+        <Link to="/">Contato</Link>
         <Link to="/create-denuncia">Denunciar</Link>
       </div>
     </div>

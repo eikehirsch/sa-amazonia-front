@@ -1,7 +1,12 @@
 import "./Login.css"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 function Login() {
+
+    const [userName, setUserName] = useState();
+    const [userPassword, setUserPassword] = useState();
+
     return (
         <div className='login-big-container'>
             <div className='login-main-container'>
@@ -10,11 +15,11 @@ function Login() {
                 <div className="inputs-container">
                     <div className="input-container">
                         <img className='login-input-icon' src="./username-icon.png" alt="" />
-                        <input className='input-login' type="text" placeholder='Nome do usuário' />
+                        <input onChange={(e) => setUserName(e.target.value)} className='input-login' type="text" placeholder='Nome do usuário' />
                     </div>
                     <div className="input-container">
                         <img className='login-input-icon' src="./password-icon.png" alt="" />
-                        <input className='input-login' type="text" placeholder='Senha' />
+                        <input onChange={(e) => setUserPassword(e.target.value)} className='input-login' type="text" placeholder='Senha' />
                     </div>
                 </div>
                 <button className="login-button">

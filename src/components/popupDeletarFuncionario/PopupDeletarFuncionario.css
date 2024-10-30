@@ -1,0 +1,40 @@
+.overlay-delete {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(224, 223, 223, 0.4); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-delete {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente do card */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Largura do card */
+    color: rgb(223, 66, 66); /* Texto opaco */
+    text-align: center;
+    border: 2px solid #9181F4;
+}
+
+.popup-delete-title {
+    width: 100%;
+}
+
+.funcionario-delete-name {
+    color: black;
+}
+
+.popup-delete-button {
+    width: 50%;
+    margin: 0 auto;
+    cursor: pointer;
+}

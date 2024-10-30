@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import PopupGerenciarFuncionario from '../popupGerenciarFuncionario/PopupGerenciarFuncionario';
+import PopupDeletarFuncionario from '../popupDeletarFuncionario/PopupDeletarFuncionario';
 
 import "./FuncionariosTable.css"
 
@@ -25,13 +27,26 @@ const rows = [
 
 export default function BasicTable() {
 
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [selectedFuncionario, setselectedFuncionario] = useState();
+    const [isPopupGerenciarOpen, setIsPopupGerenciarOpen] = useState(false);
+    const [selectedGerenciarFuncionario, setSelectedGerenciarFuncionario] = useState();
 
-    const togglePopup = (row) => {
-        setIsPopupOpen(!isPopupOpen);
-        setselectedFuncionario(row)
+    const [isPopupDeletarOpen, setIsPopupDeletarOpen] = useState(false);
+    const [selectedDeletarFuncionario, setSelectedDeletarFuncionario] = useState();
+
+    const toggleGerenciarPopup = (row) => {
+        setIsPopupGerenciarOpen(!isPopupGerenciarOpen);
+        setSelectedGerenciarFuncionario(row)
     };
+
+    const toggleDeletarPopup = (row) => {
+        setIsPopupDeletarOpen(!isPopupDeletarOpen);
+        setSelectedDeletarFuncionario(row)
+    };
+
+    useEffect(() => {
+        console.log('isPopupDeletarOpen', isPopupDeletarOpen)
+    }, [selectedDeletarFuncionario])
+
 
     return (
         <TableContainer component={Paper}>
@@ -61,14 +76,15 @@ export default function BasicTable() {
                                 {row.status ? (
                                     <>
                                         <div className='gerenciar-funcionario-container'>
-                                            <button onClick={() => togglePopup(row)} className='designar-funcionario-button'>Designar à denúncia</button>
-                                            <button className='deletar-funcionario-button'>Desativar funcionário</button>
+                                            <button onClick={() => toggleGerenciarPopup(row)} className='designar-funcionario-button'>Designar à denúncia</button>
+                                            <button onClick={() => toggleDeletarPopup(row)} className='deletar-funcionario-button'>Desativar funcionário</button>
                                         </div></>
                                 ) : <></>}
                             </TableCell>
                         </TableRow>
                     ))}
-                    {isPopupOpen && <PopupGerenciarFuncionario funcionario={selectedFuncionario} togglePopup={togglePopup} />}
+                    {isPopupGerenciarOpen && <PopupGerenciarFuncionario funcionario={selectedGerenciarFuncionario} toggleGerenciarPopup={toggleGerenciarPopup} />}
+                    {isPopupDeletarOpen && <PopupDeletarFuncionario funcionario={selectedDeletarFuncionario} toggleDeletarPopup={toggleDeletarPopup} setIsPopupDeletarOpen={setIsPopupDeletarOpen} />}
                 </TableBody>
             </Table>
         </TableContainer>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "./RegisterFiscal.css"
+import "./EditFiscal.css"
 import { useState } from "react"
 
 function Register() {
@@ -13,7 +13,7 @@ function Register() {
   const [fiscalPassword, setFiscalPassword] = useState();
   const [fiscalConfirmPassword, setFiscalConfirmPassword] = useState();
 
-  function registerFiscal() {
+  function editFiscal() {
     // Vai chamar a rota do controller que cria a denúncia
 
     console.log("fiscalName", fiscalName)
@@ -27,41 +27,33 @@ function Register() {
   }
 
   return (
-    <div className='register-big-container'>
-      <div className='register-main-container'>
-        <div className="buttons-register-container">
-          <Link to="/register-fiscal">
-            <button className="button-register-active">Registrando fiscal</button>
-          </Link>
-          <Link to="/register-biologo">
-            <button className="button-register-inactive">Clique para registrar biólogo</button>
-          </Link>
-        </div>
-        <h1 className="register-title">CADASTRO DE FISCAL</h1>
-        <p className="paragraph">Preenche os campos abaixo para concluir o cadastro do novo fiscal</p>
+    <div className='edit-big-container'>
+      <div className='edit-main-container'>
+        <h1 className="edit-title">EDITAR FISCAL</h1>
+        <p className="paragraph">Preenche os campos abaixo para concluir a alteração do fiscal</p>
         <div className="inputs-container">
           <div className="input-container">
-            <img className='register-input-icon' src="./username-icon.png" alt="" />
-            <input onChange={(e) => setFiscalName(e.target.value)} className='input-register' type="text" placeholder='Nome do fiscal' />
+            <img className='edit-input-icon' src="./username-icon.png" alt="" />
+            <input readOnly value={fiscalName} className='input-edit' type="text" placeholder='Nome do fiscal' />
+          </div>
+          <div className="input-container">
+            <img className='edit-input-icon' src="./username-icon.png" alt="" />
+            <input value={fiscalEmail} onChange={(e) => setFiscalEmail(e.target.value)} className='input-edit' type="text" placeholder='E-mail' />
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
-            <input onChange={(e) => setFiscalEmail(e.target.value)} className='input-register' type="text" placeholder='E-mail' />
+            <input readOnly value={fiscalCpf} onChange={(e) => setFiscalCpf(e.target.value)} className='input-edit' type="text" placeholder='CPF' />
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
-            <input onChange={(e) => setFiscalCpf(e.target.value)} className='input-register' type="text" placeholder='CPF' />
+            <input value={fiscalAddress} onChange={(e) => setFiscalAddress(e.target.value)} className='input-edit' type="text" placeholder='Endereço' />
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
-            <input onChange={(e) => setFiscalAddress(e.target.value)} className='input-register' type="text" placeholder='Endereço' />
+            <input value={fiscalPhone} onChange={(e) => setFiscalPhone(e.target.value)} className='input-edit' type="text" placeholder='Telefone de contato' />
           </div>
           <div className="input-container">
-            <img className='register-input-icon' src="./username-icon.png" alt="" />
-            <input onChange={(e) => setFiscalPhone(e.target.value)} className='input-register' type="text" placeholder='Telefone de contato' />
-          </div>
-          <div className="input-container">
-            <select className="input-select-fiscal-areaWork" id="estados" value={fiscalAreaWork} onChange={(e) => setFiscalAreaWork(e.target.value)}>
+            <select value={fiscalAreaWork} className="input-select-editfiscal-areaWork" id="estados" onChange={(e) => setFiscalAreaWork(e.target.value)}>
                 <option value="" disabled selected>-Selecione o estado de atuação do fiscal-</option>
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
@@ -94,21 +86,21 @@ function Register() {
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./password-icon.png" alt="" />
-            <input onChange={(e) => setFiscalPassword(e.target.value)} className='input-register' type="password" placeholder='Senha' />
+            <input onChange={(e) => setFiscalPassword(e.target.value)} className='input-edit' type="text" placeholder='Senha' />
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./password-icon.png" alt="" />
-            <input onChange={(e) => setFiscalConfirmPassword(e.target.value)} className='input-register' type="password" placeholder='Confirmar senha' />
+            <input onChange={(e) => setFiscalConfirmPassword(e.target.value)} className='input-edit' type="text" placeholder='Confirmar senha' />
           </div>
         </div>
-        <button onClick={() => registerFiscal()} className="register-fiscal-button">
-          CADASTRAR
+        <button onClick={() => editFiscal()} className="edit-fiscal-button">
+          EDITAR
         </button>
         {/* <Link to="/login">
           <p className='register-register-paragraph'>Já possui conta? Clique para entrar.</p>
         </Link> */}
       </div>
-      <img className='register-image' src="./register-imagem.png" alt="" />
+      <img className='edit-image' src="./register-imagem.png" alt="" />
     </div>
   )
 }

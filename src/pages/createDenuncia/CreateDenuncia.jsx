@@ -7,11 +7,19 @@ import CreateDenunciaDatePicker from "../../components/createDenunciaDatepicker/
 
 function CreateDenuncia() {
 
-    const [selectedOption, setSelectedOption] = useState('');
+    const [titleDenuncia, setTitleDenuncia] = useState('');
+    const [typeDenuncia, setTypeDenuncia] = useState('');
+    const [locationDenuncia, setLocationDenuncia] = useState('');
+    const [descriptionDenuncia, setDescriptionDenuncia] = useState('');
+    const [dateDenuncia, setDateDenuncia] = useState(new Date());
 
-    const handleChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
+    function createDenuncia() {
+        console.log("titleDenuncia", titleDenuncia);
+        console.log("typeDenuncia", typeDenuncia);
+        console.log("locationDenuncia", locationDenuncia);
+        console.log("descriptionDenuncia", descriptionDenuncia);
+        console.log("dateDenuncia", dateDenuncia);
+    }
 
     return (
         <div className='create-denuncia-big-container'>
@@ -27,11 +35,11 @@ function CreateDenuncia() {
             <div className="inputs-create-denuncia-main-container">
                 <div className="input-create-denuncia-container">
                     <label className='label-input-create-denuncia'>Crie um título curto para sua denúncia</label>
-                    <textarea className="input-create-denuncia" placeholder='Ex: Queimadas no bairro Pantanal dia 15/10/2024.' />
+                    <textarea onChange={(e) => setTitleDenuncia(e.target.value)} className="input-create-denuncia" placeholder='Ex: Queimadas no bairro Pantanal dia 15/10/2024.' />
                 </div>
                 <div className="input-create-denuncia-container">
                     <label className='label-input-create-denuncia'>Que tipo de denúncia você está registrando?</label>
-                    <select className='input-select-create-denuncia' value={selectedOption} onChange={handleChange}>
+                    <select className='input-select-create-denuncia' value={typeDenuncia} onChange={(e) => setTypeDenuncia(e.target.value)}>
                         <option value="">--Selecione--</option>
                         <option value="queimadas">Queimadas</option>
                         <option value="contrabando">Contrabando de Animais</option>
@@ -42,17 +50,17 @@ function CreateDenuncia() {
                 </div>
                 <div className="input-create-denuncia-container">
                     <label className='label-input-create-denuncia'>Em que local aconteceu o evento? Procure ser preciso sobre o local.</label>
-                    <textarea className="input-create-denuncia" placeholder='Ex: Praia da Joaquina, sentido norte, região de mangue, próximo ao mercado São Pedro.' />
+                    <textarea onChange={(e) => setLocationDenuncia(e.target.value)} className="input-create-denuncia" placeholder='Ex: Praia da Joaquina, sentido norte, região de mangue, próximo ao mercado São Pedro.' />
                 </div>
                 <div className="input-create-denuncia-container">
                     <label className='label-input-create-denuncia'>Descreva o que você viu. Tente ser o mais específico possível nas informações relatadas.</label>
-                    <textarea className="input-create-denuncia" placeholder='Ex: Descrição do evento testemunhado. O que aconteceu, como aconteceu...' />
+                    <textarea onChange={(e) => setDescriptionDenuncia(e.target.value)} className="input-create-denuncia" placeholder='Ex: Descrição do evento testemunhado. O que aconteceu, como aconteceu...' />
                 </div>
                 <div className="input-create-denuncia-container">
                     <label className='label-input-create-denuncia'>Quando aconteceu o testemunho?</label>
-                    <CreateDenunciaDatePicker />
+                    <CreateDenunciaDatePicker dateDenuncia={dateDenuncia} setDateDenuncia={setDateDenuncia}/>
                 </div>
-                <button className="create-denuncia-button">
+                <button onClick={() => createDenuncia()} className="create-denuncia-button">
                     Registrar denúncia
                 </button>
             </div>

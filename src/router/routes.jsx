@@ -4,7 +4,7 @@ import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import RegisterFiscal from "../pages/registerFiscal/RegisterFiscal"
 import RegisterBiologo from "../pages/registerBiologo/RegisterBiologo"
-import EditFiscal from "../pages/editRegisterFiscal/EditFiscal"
+import EditFiscal from "../pages/editFiscal/EditFiscal"
 import EditBiologo from "../pages/editBiologo/EditBiologo"
 import CreateDenuncia from "../pages/createDenuncia/CreateDenuncia";
 import Denuncias from "../pages/denuncias/Denuncias";

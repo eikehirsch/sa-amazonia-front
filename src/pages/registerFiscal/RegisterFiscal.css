@@ -116,3 +116,16 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.input-select-fiscal-areaWork {
+    padding: 10px;
+    border: 2px solid #9181f4;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    cursor: pointer;
+}
