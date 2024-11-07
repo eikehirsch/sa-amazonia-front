@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Navbar from '../../components/navbar/Navbar'
 import DenunciasAnaliseTable from "../../components/denunciasAnaliseTable/DenunciasAnaliseTable"
@@ -6,6 +6,7 @@ import DenunciasAnaliseTable from "../../components/denunciasAnaliseTable/Denunc
 import "./DenunciaAnalise.css"
 
 function DenunciaAnalise() {
+
     return (
         <div className='denuncia-analise-big-container'>
             <Navbar />
