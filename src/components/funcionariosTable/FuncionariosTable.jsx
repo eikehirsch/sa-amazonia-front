@@ -7,25 +7,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from 'react-router-dom';
 
 import PopupGerenciarFuncionario from '../popupGerenciarFuncionario/PopupGerenciarFuncionario';
 import PopupDeletarFuncionario from '../popupDeletarFuncionario/PopupDeletarFuncionario';
 
 import "./FuncionariosTable.css"
 
-function createData(name, occupation, status) {
-    return { name, occupation, status };
-}
-
-const rows = [
-    createData("Lucas Ferreira da Silva", "Fiscal", true),
-    createData('Ana Clara Oliveira Santos', "Biologo", false),
-    createData('Pedro Henrique Costa Lima', "Biologo", false),
-    createData('Juliana Maria Rodrigues Alves', "Fiscal", true),
-    createData('Rafael dos Santos Pereira', "Fiscal", false)
-];
-
 export default function BasicTable() {
+
+    const navigate = useNavigate();
 
     const [isPopupGerenciarOpen, setIsPopupGerenciarOpen] = useState(false);
     const [selectedGerenciarFuncionario, setSelectedGerenciarFuncionario] = useState();
@@ -42,6 +33,33 @@ export default function BasicTable() {
         setIsPopupDeletarOpen(!isPopupDeletarOpen);
         setSelectedDeletarFuncionario(row)
     };
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [funcionarios, setFuncionarios] = useState([]);
+
+    const getFuncionarios = async () => {
+        setIsLoading(true);  // Inicia o carregamento
+        try {
+            const response = await fetch('http://localhost:8080/usuarios/');
+            const data = await response.json();
+            console.log('eita', data);  // Verifique a estrutura aqui
+            setFuncionarios(data || []);  // Ajuste conforme necessário
+        } catch (erro) {
+            console.error(erro);
+        } finally {
+            setIsLoading(false);  // Finaliza o carregamento
+        }
+    };
+
+    const handleEditFuncionario = (funcionario) => {
+        // Navega para a página /edit-fiscal passando o ID do funcionário como parâmetro
+        if (funcionario.tipo == "FISCAL") navigate(`/edit-fiscal/${funcionario.id}`);
+        if (funcionario.tipo == "BIOLOGO") navigate(`/edit-biologo/${funcionario.id}`);
+    };
+
+    useEffect(() => {
+        getFuncionarios();
+    }, []);
 
     useEffect(() => {
         console.log('isPopupDeletarOpen', isPopupDeletarOpen)
@@ -60,29 +78,36 @@ export default function BasicTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            key={row.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell align="center" component="th" scope="row">
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="center" component="th" scope="row">
-                                {row.occupation}
-                            </TableCell>
-                            <TableCell style={{ color: row.status === true ? 'blue' : 'red' }} align="center">{row.status ? 'Ativo' : 'Não ativo'}</TableCell>
-                            <TableCell align="center">
-                                {row.status ? (
-                                    <>
-                                        <div className='gerenciar-funcionario-container'>
-                                            <button onClick={() => toggleGerenciarPopup(row)} className='designar-funcionario-button'>Designar à denúncia</button>
-                                            <button onClick={() => toggleDeletarPopup(row)} className='deletar-funcionario-button'>Desativar funcionário</button>
-                                        </div></>
-                                ) : <></>}
-                            </TableCell>
+                    {funcionarios.length > 0 ? (
+                        funcionarios.map((funcionario) => (
+                            <TableRow
+                                key={funcionario.id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell align="center" component="th" scope="row">
+                                    {funcionario.name}
+                                </TableCell>
+                                <TableCell align="center" component="th" scope="row">
+                                    {funcionario.tipo}
+                                </TableCell>
+                                <TableCell style={{ color: funcionario.isActive === true ? 'blue' : 'red' }} align="center">{funcionario.isActive ? 'Ativo' : 'Não ativo'}</TableCell>
+                                <TableCell align="center">
+                                    {funcionario.isActive ? (
+                                        <>
+                                            <div className='gerenciar-funcionario-container'>
+                                                <button onClick={() => toggleGerenciarPopup(funcionario)} className='designar-funcionario-button'>Designar à denúncia</button>
+                                                <button onClick={() => handleEditFuncionario(funcionario)} className='designar-funcionario-button'>Editar funcionário</button>
+                                                <button onClick={() => toggleDeletarPopup(funcionario)} className='deletar-funcionario-button'>Desativar funcionário</button>
+                                            </div></>
+                                    ) : <></>}
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={5} align="center">Nenhuma denúncia registrada.</TableCell>
                         </TableRow>
-                    ))}
+                    )}
                     {isPopupGerenciarOpen && <PopupGerenciarFuncionario funcionario={selectedGerenciarFuncionario} toggleGerenciarPopup={toggleGerenciarPopup} />}
                     {isPopupDeletarOpen && <PopupDeletarFuncionario funcionario={selectedDeletarFuncionario} toggleDeletarPopup={toggleDeletarPopup} setIsPopupDeletarOpen={setIsPopupDeletarOpen} />}
                 </TableBody>

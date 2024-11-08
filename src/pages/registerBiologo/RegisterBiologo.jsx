@@ -1,8 +1,15 @@
 import "./RegisterBiologo.css"
 import { Link } from "react-router-dom"
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+//Isto aqui é para o spinner
+import { Oval } from 'react-loader-spinner'
 
 function Register() {
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const [biologistName, setBiologistName] = useState();
     const [biologistEmail, setBiologistEmail] = useState();
@@ -13,17 +20,50 @@ function Register() {
     const [biologistPassword, setBiologistPassword] = useState();
     const [biologistConfirmPassword, setBiologistConfirmPassword] = useState();
 
-    function registerBiologist() {
-        // Vai chamar a rota do controller que cria a denúncia
+    const registerBiologist = async () => {
 
-        console.log("biologistName", biologistName)
-        console.log("biologistEmail", biologistEmail)
-        console.log("biologistCpf", biologistCpf)
-        console.log("biologistAddress", biologistAddress)
-        console.log("biologistPhone", biologistPhone)
-        console.log("biologistAreaWork", biologistAreaWork)
-        console.log("biologistPassword", biologistPassword)
-        console.log("biologistConfirmPassword", biologistConfirmPassword)
+        setIsLoading(true); // Começa a carregar (mostrar o spinner)
+
+        // Criando o objeto biologoData com os valores dos states
+        const biologistBody = {
+            name: biologistName,
+            email: biologistEmail,
+            cpf: biologistCpf,
+            address: biologistAddress,
+            phone: biologistPhone,
+            areaWork: biologistAreaWork,
+            password: biologistPassword,
+            tipo: "BIOLOGO",
+            isActive: true
+        };
+
+        console.log('biologistBody', biologistBody)
+
+        try {
+            // Fazendo a requisição para a API
+            const response = await fetch('http://localhost:8080/usuarios/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(biologistBody), // Envia os dados como JSON no corpo da requisição
+            });
+
+            if (response.ok) {
+                const notify = () => toast.success('Biólogo registrado com sucesso!', { position: "top-center", autoClose: 3000 });
+                notify();
+
+            } else {
+                throw new Error();
+            }
+
+        } catch (erro) {
+            const notify = () => toast.error('Falha ao registrar usuário! Tente mais tarde.', { position: "top-center", autoClose: 3000 });
+            notify();
+        }
+        finally {
+            setIsLoading(false); // Começa a carregar (mostrar o spinner)
+        }
     }
 
     return (
@@ -61,7 +101,7 @@ function Register() {
                         <input onChange={(e) => setBiologistPhone(e.target.value)} className='input-register' type="text" placeholder='Telefone de contato' />
                     </div>
                     <div className="input-container">
-                        <select className="input-select-biologist-areaWork" id="estados" value={biologistAreaWork} onChange={(e) => setFiscalAreaWork(e.target.value)}>
+                        <select className="input-select-biologist-areaWork" id="estados" value={biologistAreaWork} onChange={(e) => setBiologistAreaWork(e.target.value)}>
                             <option value="" disabled selected>-Selecione o estado de atuação do biólogo-</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -101,6 +141,17 @@ function Register() {
                         <input onChange={(e) => setBiologistConfirmPassword(e.target.value)} className='input-register' type="password" placeholder='Confirmar senha' />
                     </div>
                 </div>
+                {isLoading && <div>
+                    <Oval
+                        visible={true}
+                        height="50"
+                        width="50"
+                        color="#9181f4"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>}
                 <button onClick={() => registerBiologist()} className="register-biologo-button">
                     CADASTRAR
                 </button>

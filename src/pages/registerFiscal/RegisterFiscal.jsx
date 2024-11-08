@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom"
 import "./RegisterFiscal.css"
 import { useState } from "react"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+//Isto aqui é para o spinner
+import { Oval } from 'react-loader-spinner'
 
 function Register() {
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [fiscalName, setFiscalName] = useState();
   const [fiscalEmail, setFiscalEmail] = useState();
@@ -13,17 +20,50 @@ function Register() {
   const [fiscalPassword, setFiscalPassword] = useState();
   const [fiscalConfirmPassword, setFiscalConfirmPassword] = useState();
 
-  function registerFiscal() {
-    // Vai chamar a rota do controller que cria a denúncia
+  const registerFiscal = async () => {
 
-    console.log("fiscalName", fiscalName)
-    console.log("fiscalEmail", fiscalEmail)
-    console.log("fiscalCpf", fiscalCpf)
-    console.log("fiscalAddress", fiscalAddress)
-    console.log("fiscalPhone", fiscalPhone)
-    console.log("fiscalAreaWork", fiscalAreaWork)
-    console.log("fiscalPassword", fiscalPassword)
-    console.log("fiscalConfirmPassword", fiscalConfirmPassword)
+    setIsLoading(true); // Começa a carregar (mostrar o spinner)
+
+    // Criando o objeto biologoData com os valores dos states
+    const fiscalBody = {
+      name: fiscalName,
+      email: fiscalEmail,
+      cpf: fiscalCpf,
+      address: fiscalAddress,
+      phone: fiscalPhone,
+      areaWork: fiscalAreaWork,
+      password: fiscalPassword,
+      tipo: "FISCAL",
+      isActive: true
+    };
+
+    console.log('fiscalBody', fiscalBody)
+
+    try {
+      // Fazendo a requisição para a API
+      const response = await fetch('http://localhost:8080/usuarios/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fiscalBody), // Envia os dados como JSON no corpo da requisição
+      });
+
+      if (response.ok) {
+        const notify = () => toast.success('Fiscal registrado com sucesso!', { position: "top-center", autoClose: 3000 });
+        notify();
+
+      } else {
+        throw new Error();
+      }
+
+    } catch (erro) {
+      const notify = () => toast.error('Falha ao registrar usuário! Tente mais tarde.', { position: "top-center", autoClose: 3000 });
+      notify();
+    }
+    finally {
+      setIsLoading(false); // Começa a carregar (mostrar o spinner)
+    }
   }
 
   return (
@@ -62,34 +102,34 @@ function Register() {
           </div>
           <div className="input-container">
             <select className="input-select-fiscal-areaWork" id="estados" value={fiscalAreaWork} onChange={(e) => setFiscalAreaWork(e.target.value)}>
-                <option value="" disabled selected>-Selecione o estado de atuação do fiscal-</option>
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AP">Amapá</option>
-                <option value="AM">Amazonas</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RO">Rondônia</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SP">São Paulo</option>
-                <option value="SE">Sergipe</option>
-                <option value="TO">Tocantins</option>
+              <option value="" disabled selected>-Selecione o estado de atuação do fiscal-</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
             </select>
           </div>
           <div className="input-container">
@@ -101,6 +141,17 @@ function Register() {
             <input onChange={(e) => setFiscalConfirmPassword(e.target.value)} className='input-register' type="password" placeholder='Confirmar senha' />
           </div>
         </div>
+        {isLoading && <div>
+          <Oval
+            visible={true}
+            height="50"
+            width="50"
+            color="#9181f4"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>}
         <button onClick={() => registerFiscal()} className="register-fiscal-button">
           CADASTRAR
         </button>
