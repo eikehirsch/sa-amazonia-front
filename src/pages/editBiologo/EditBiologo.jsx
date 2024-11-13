@@ -1,19 +1,15 @@
 import "./EditBiologo.css"
-import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 
 import { useParams } from "react-router-dom";
 
-function Register() {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-    const [biologistName, setBiologistName] = useState();
-    const [biologistEmail, setBiologistEmail] = useState();
-    const [biologistCpf, setBiologistCpf] = useState();
-    const [biologistAddress, setBiologistAddress] = useState();
-    const [biologistPhone, setBiologistPhone] = useState();
-    const [biologistAreaWork, setBiologistAreaWork] = useState();
-    const [biologistPassword, setBiologistPassword] = useState();
-    const [biologistConfirmPassword, setBiologistConfirmPassword] = useState();
+//Isto aqui é para o spinner
+import { Oval } from 'react-loader-spinner'
+
+function Register() {
 
     // Obtendo o parâmetro id da URL
     const { id } = useParams();
@@ -23,18 +19,51 @@ function Register() {
     const [funcionario, setFuncionario] = useState(null);
 
     const getFuncionario = async () => {
-        setIsLoading(true);  // Inicia o carregamento
         try {
             const response = await fetch(`http://localhost:8080/usuarios/${id}`);
             const data = await response.json();
-            console.log('eita', data);  // Verifique a estrutura aqui
             setFuncionario(data || []);  // Ajuste conforme necessário
         } catch (erro) {
             console.error(erro);
-        } finally {
-            setIsLoading(false);  // Finaliza o carregamento
         }
     };
+
+    const editBiologist = async () => {
+
+        setIsLoading(true);
+
+        const funcionarioBody = {
+            email: funcionario.email,
+            address: funcionario.address,
+            phone: funcionario.phone,
+            areaWork: funcionario.areaWork
+        }
+
+        try {
+            const response = await fetch(`http://localhost:8080/usuarios/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(funcionarioBody), // Envia os dados como JSON no corpo da requisição
+            });
+
+            if (response.ok) {
+                const notify = () => toast.success('Denúncia criada com sucesso!', { position: "top-center", autoClose: 3000 });
+                notify();
+
+            } else {
+                throw new Error();
+            }
+
+        } catch (erro) {
+            const notify = () => toast.error('Falha ao criar um biólogo! Tente mais tarde.', { position: "top-center", autoClose: 3000 });
+            notify();
+        }
+        finally {
+            setIsLoading(false); // Começa a carregar (mostrar o spinner)
+        }
+    }
 
     useEffect(() => {
         getFuncionario();
@@ -42,33 +71,22 @@ function Register() {
 
 
     return (
-        <div className='edit-big-container'>
-            <div className='edit-main-container'>
-                <h1 className="edit-title">EDITAR BIÓLOGO</h1>
-                <p className="paragraph">Preenche os campos abaixo para concluir a alteração do biólogo</p>
-                <div className="inputs-container">
-                    {/* <div className="input-container">
-                        <img className='edit-input-icon' src="./username-icon.png" alt="" />
-                        <input readOnly value={biologistName} className='input-edit' type="text" placeholder='Nome do biólogo' />
-                    </div> */}
-                    <div className="input-container">
-                        <img className='edit-input-icon' src="./username-icon.png" alt="" />
-                        <input value={funcionario?.email} onChange={(e) => setBiologistEmail(e.target.value)} className='input-edit' type="text" placeholder='E-mail' />
+        <div className='biologo-edit-big-container'>
+            <div className='biologo-edit-main-container'>
+                <h1 className="biologo-edit-title">EDITAR BIÓLOGO</h1>
+                <p className="biologo-edit-paragraph">Preencha os campos abaixo para concluir a alteração do biólogo</p>
+                <div className="biologo-inputs-container">
+                    <div className="biologo-input-container">
+                        <input value={funcionario?.email} onChange={(e) => setFuncionario({ ...funcionario, email: e.target.value })} className='biologo-input-edit' type="text" placeholder='E-mail' />
                     </div>
-                    {/* <div className="input-container">
-                        <img className='edit-input-icon' src="./username-icon.png" alt="" />
-                        <input readOnly value={biologistEmail} className='input-edit' type="text" placeholder='CPF' />
-                    </div> */}
-                    <div className="input-container">
-                        <img className='edit-input-icon' src="./username-icon.png" alt="" />
-                        <input value={funcionario?.address} onChange={(e) => setBiologistAddress(e.target.value)} className='input-edit' type="text" placeholder='Endereço' />
+                    <div className="biologo-input-container">
+                        <input value={funcionario?.address} onChange={(e) => setFuncionario({ ...funcionario, address: e.target.value })} className='biologo-input-edit' type="text" placeholder='Endereço' />
                     </div>
-                    <div className="input-container">
-                        <img className='edit-input-icon' src="./username-icon.png" alt="" />
-                        <input value={funcionario?.phone} onChange={(e) => setBiologistPhone(e.target.value)} className='input-edit' type="text" placeholder='Telefone de contato' />
+                    <div className="biologo-input-container">
+                        <input value={funcionario?.phone} onChange={(e) => setFuncionario({ ...funcionario, phone: e.target.value })} className='biologo-input-edit' type="text" placeholder='Telefone de contato' />
                     </div>
-                    <div className="input-container">
-                        <select className="input-select-editbiologist-areaWork" id="estados" value={funcionario?.areaWork} onChange={(e) => setFiscalAreaWork(e.target.value)}>
+                    <div className="biologo-input-container">
+                        <select className="biologo-input-select-editbiologist-areaWork" id="estados" value={funcionario?.areaWork} onChange={(e) => setFuncionario({ ...funcionario, areaWork: e.target.value })}>
                             <option value="" disabled selected>-Selecione o estado de atuação do biólogo-</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -99,23 +117,22 @@ function Register() {
                             <option value="TO">Tocantins</option>
                         </select>
                     </div>
-                    {/* <div className="input-container">
-                        <img className='edit-input-icon' src="./password-icon.png" alt="" />
-                        <input onChange={(e) => setBiologistPassword(e.target.value)} className='input-edit' type="text" placeholder='Senha' />
-                    </div>
-                    <div className="input-container">
-                        <img className='edit-input-icon' src="./password-icon.png" alt="" />
-                        <input onChange={(e) => setBiologistConfirmPassword(e.target.value)} className='input-edit' type="text" placeholder='Confirmar senha' />
-                    </div> */}
                 </div>
-                <button onClick={() => editBiologist()} className="edit-biologo-button">
+                {isLoading && <div>
+                    <Oval
+                        visible={true}
+                        height="50"
+                        width="50"
+                        color="#9181f4"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>}
+                <button onClick={() => editBiologist()} className="biologo-edit-biologo-button">
                     EDITAR
                 </button>
-                {/* <Link to="/login">
-          <p className='register-register-paragraph'>Já possui conta? Clique para entrar.</p>
-        </Link> */}
             </div>
-            <img className='edit-image' src="./register-imagem.png" alt="" />
         </div>
     )
 }

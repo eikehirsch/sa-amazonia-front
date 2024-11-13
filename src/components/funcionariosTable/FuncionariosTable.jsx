@@ -18,6 +18,8 @@ export default function BasicTable() {
 
     const navigate = useNavigate();
 
+    const [isFuncionarioFoiDesativado, setIsFuncionarioFoiDesativado] = useState(false);
+
     const [isPopupGerenciarOpen, setIsPopupGerenciarOpen] = useState(false);
     const [selectedGerenciarFuncionario, setSelectedGerenciarFuncionario] = useState();
 
@@ -42,7 +44,6 @@ export default function BasicTable() {
         try {
             const response = await fetch('http://localhost:8080/usuarios/');
             const data = await response.json();
-            console.log('eita', data);  // Verifique a estrutura aqui
             setFuncionarios(data || []);  // Ajuste conforme necessário
         } catch (erro) {
             console.error(erro);
@@ -59,7 +60,7 @@ export default function BasicTable() {
 
     useEffect(() => {
         getFuncionarios();
-    }, []);
+    }, [isFuncionarioFoiDesativado]);
 
     useEffect(() => {
         console.log('isPopupDeletarOpen', isPopupDeletarOpen)
@@ -109,7 +110,7 @@ export default function BasicTable() {
                         </TableRow>
                     )}
                     {isPopupGerenciarOpen && <PopupGerenciarFuncionario funcionario={selectedGerenciarFuncionario} toggleGerenciarPopup={toggleGerenciarPopup} />}
-                    {isPopupDeletarOpen && <PopupDeletarFuncionario funcionario={selectedDeletarFuncionario} toggleDeletarPopup={toggleDeletarPopup} setIsPopupDeletarOpen={setIsPopupDeletarOpen} />}
+                    {isPopupDeletarOpen && <PopupDeletarFuncionario setIsFuncionarioFoiDesativado={setIsFuncionarioFoiDesativado} funcionario={selectedDeletarFuncionario} toggleDeletarPopup={toggleDeletarPopup} setIsPopupDeletarOpen={setIsPopupDeletarOpen} />}
                 </TableBody>
             </Table>
         </TableContainer>

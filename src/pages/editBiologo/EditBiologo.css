@@ -1,21 +1,26 @@
-.edit-big-container {
+.biologo-edit-big-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 18px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
 }
 
-.edit-main-container {
+.biologo-edit-main-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
     max-width: 100vh;
+    width: 35%;
     gap: 14px;
-    width: 50%;
+    border: 2px solid #6957df;
+    border-radius: 8px;
+    background-color: white;
 }
 
-.button-edit-active {
+.biologo-button-edit-active {
     background-color: white;
     padding: 14px;
     border-radius: 12px;
@@ -27,7 +32,7 @@
     cursor: pointer;
 }
 
-.button-edit-inactive {
+.biologo-button-edit-inactive {
     background-color: #6957df;
     padding: 14px;
     border-radius: 12px;
@@ -39,29 +44,29 @@
     cursor: pointer;
 }
 
-.buttons-edit-container {
+.biologo-buttons-edit-container {
     display: flex;
     gap: 10px;
 }
 
-.edit-title {
+.biologo-edit-title {
     margin-top: 20px;
     color: #9181F4;
 }
 
-.edit-paragraph {
-
+.biologo-edit-paragraph {
+    text-align: center;
 }
 
-.inputs-container {
+.biologo-inputs-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 40%;
+    width: 60%;
     margin-top: 10px;
 }
 
-.input-container {
+.biologo-input-container {
     display: flex;
     align-items: center;
     background-color: #ebe3fc;
@@ -69,29 +74,29 @@
     border-radius: 6px;
 }
 
-.edit-input-icon {
+.biologo-edit-input-icon {
     width: 20px;
     height: 20px;
 }
 
-.input-edit {
+.biologo-input-edit {
     background-color: transparent;
     border: none;
     width: 100%;
     padding: 6px;
 }
 
-.input-edit::placeholder {
+.biologo-input-edit::placeholder {
     color: black;
 }
 
-.input-edit:focus {
+.biologo-input-edit:focus {
     border: none; /* Remove a borda ao focar */
     box-shadow: none; /* Remove qualquer sombra */
     outline: none;
 }
 
-.edit-biologo-button {
+.biologo-edit-biologo-button {
     background-color: #6957df;
     padding: 14px;
     border-radius: 4px;
@@ -103,12 +108,12 @@
     cursor: pointer;
 }
 
-.edit-image {
+.biologo-edit-image {
     width: 45%;
     max-height: 100vh;
 }
 
-.input-select-editbiologist-areaWork {
+.biologo-input-select-editbiologist-areaWork {
     padding: 10px;
     border: 2px solid #9181f4;
     border-radius: 5px;

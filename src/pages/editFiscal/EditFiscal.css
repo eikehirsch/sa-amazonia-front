@@ -1,10 +1,13 @@
-.edit-big-container {
+.fiscal-edit-big-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 18px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
 }
 
-.edit-main-container {
+.fiscal-edit-main-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -12,15 +15,17 @@
     min-height: 100vh;
     max-width: 100vh;
     gap: 14px;
-    width: 50%;
+    width: 35%;
+    border: 2px solid #6957df;
+    border-radius: 8px;
 }
 
-.buttons-edit-container {
+.fiscal-buttons-edit-container {
     display: flex;
     gap: 10px;
 }
 
-.button-edit-active {
+.fiscal-button-edit-active {
     background-color: white;
     padding: 14px;
     border-radius: 12px;
@@ -32,7 +37,7 @@
     cursor: pointer;
 }
 
-.button-edit-inactive {
+.fiscal-button-edit-inactive {
     background-color: #6957df;
     padding: 14px;
     border-radius: 12px;
@@ -44,14 +49,16 @@
     cursor: pointer;
 }
 
-.edit-title {
+.fiscal-edit-title {
     margin-top: 20px;
     color: #9181F4;
 }
 
-.edit-paragraph {}
+.fiscal-edit-paragraph {
+    text-align: center;
+}
 
-.inputs-container {
+.fiscal-inputs-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -59,7 +66,7 @@
     margin-top: 10px;
 }
 
-.input-container {
+.fiscal-input-container {
     display: flex;
     align-items: center;
     background-color: #ebe3fc;
@@ -67,23 +74,23 @@
     border-radius: 6px;
 }
 
-.edit-input-icon {
+.fiscal-edit-input-icon {
     width: 20px;
     height: 20px;
 }
 
-.input-edit {
+.fiscal-input-edit {
     background-color: transparent;
     border: none;
     width: 100%;
     padding: 6px;
 }
 
-.input-edit::placeholder {
+.fiscal-input-edit::placeholder {
     color: black;
 }
 
-.input-edit:focus {
+.fiscal-input-edit:focus {
     border: none;
     /* Remove a borda ao focar */
     box-shadow: none;
@@ -91,7 +98,7 @@
     outline: none;
 }
 
-.edit-fiscal-button {
+.fiscal-edit-fiscal-button {
     background-color: #6957df;
     padding: 14px;
     border-radius: 4px;
@@ -103,12 +110,12 @@
     cursor: pointer;
 }
 
-.edit-image {
+.fiscal-edit-image {
     width: 45%;
     max-height: 100vh;
 }
 
-.input-select-editfiscal-areaWork {
+.fiscal-input-select-editfiscal-areaWork {
     padding: 10px;
     border: 2px solid #9181f4;
     border-radius: 5px;
