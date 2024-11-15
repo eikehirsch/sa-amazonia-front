@@ -8,22 +8,32 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import { useAuth } from "../../context/AuthContext";
+
 export default function BasicTable() {
-    const [isLoading, setIsLoading] = useState(false);
+
+    const {token} = useAuth();
+
     const [denuncias, setDenuncias] = useState([]);
 
     const getDenuncias = async () => {
-        setIsLoading(true);  // Inicia o carregamento
+
+        console.log('tokenzinho', token)
+
         try {
-            const response = await fetch('http://localhost:8080/denuncias/');
+            const response = await fetch('http://localhost:8080/denuncias', {
+                method: 'GET',  // Define o método da requisição
+                headers: {
+                    'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
+                    'Content-Type': 'application/json'  // Define o tipo de conteúdo (opcional)
+                }
+            });
             const data = await response.json();
             console.log('datinha', data);  // Verifique a estrutura aqui
             setDenuncias(data || []);  // Ajuste conforme necessário
         } catch (erro) {
             console.error(erro);
-        } finally {
-            setIsLoading(false);  // Finaliza o carregamento
-        }
+        } 
     };
 
     useEffect(() => {

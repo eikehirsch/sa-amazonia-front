@@ -7,16 +7,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useNavigate } from 'react-router-dom';
 
 import PopupGerenciarFuncionario from '../popupGerenciarFuncionario/PopupGerenciarFuncionario';
 import PopupDeletarFuncionario from '../popupDeletarFuncionario/PopupDeletarFuncionario';
+
+import { useAuth } from "../../context/AuthContext";
 
 import "./FuncionariosTable.css"
 
 export default function BasicTable() {
 
-    const navigate = useNavigate();
+    const {token} = useAuth();
 
     const [isFuncionarioFoiDesativado, setIsFuncionarioFoiDesativado] = useState(false);
 
@@ -25,6 +26,9 @@ export default function BasicTable() {
 
     const [isPopupDeletarOpen, setIsPopupDeletarOpen] = useState(false);
     const [selectedDeletarFuncionario, setSelectedDeletarFuncionario] = useState();
+
+    const [isPopupAtivarOpen, setIsPopupAtivarOpen] = useState(false);
+    const [selectedAtivarFuncionario, setSelectedAtivarFuncionario] = useState();
 
     const toggleGerenciarPopup = (row) => {
         setIsPopupGerenciarOpen(!isPopupGerenciarOpen);
@@ -36,20 +40,27 @@ export default function BasicTable() {
         setSelectedDeletarFuncionario(row)
     };
 
-    const [isLoading, setIsLoading] = useState(false);
+    const toggleAtivarPopup = (row) => {
+        setIsPopupAtivarOpen(!isPopupAtivarOpen);
+        setSelectedAtivarFuncionario(row)
+    };
+
     const [funcionarios, setFuncionarios] = useState([]);
 
     const getFuncionarios = async () => {
-        setIsLoading(true);  // Inicia o carregamento
         try {
-            const response = await fetch('http://localhost:8080/usuarios/');
+            const response = await fetch('http://localhost:8080/usuarios/', {
+                method: 'GET',  // Define o método da requisição
+                headers: {
+                    'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
+                    'Content-Type': 'application/json'  // Define o tipo de conteúdo (opcional)
+                }
+            });
             const data = await response.json();
             setFuncionarios(data || []);  // Ajuste conforme necessário
         } catch (erro) {
             console.error(erro);
-        } finally {
-            setIsLoading(false);  // Finaliza o carregamento
-        }
+        } 
     };
 
     const handleEditFuncionario = (funcionario) => {
@@ -100,7 +111,9 @@ export default function BasicTable() {
                                                 <button onClick={() => handleEditFuncionario(funcionario)} className='designar-funcionario-button'>Editar funcionário</button>
                                                 <button onClick={() => toggleDeletarPopup(funcionario)} className='deletar-funcionario-button'>Desativar funcionário</button>
                                             </div></>
-                                    ) : <></>}
+                                    ) : <>
+                                        <button onClick={() => toggleAtivarPopup(funcionario)} className='ativar-funcionario-button'>Ativar funcionário</button>
+                                    </>}
                                 </TableCell>
                             </TableRow>
                         ))

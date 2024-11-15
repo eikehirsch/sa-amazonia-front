@@ -39,7 +39,7 @@ function CreateDenuncia() {
 
         try {
             // Fazendo a requisição para a API
-            const response = await fetch('http://localhost:8080/denuncias/', {
+            const response = await fetch('http://localhost:8080/denuncias', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
