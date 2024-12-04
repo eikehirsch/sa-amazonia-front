@@ -10,7 +10,11 @@ import CreateDenunciaDatePicker from "../../components/createDenunciaDatepicker/
 //Isto aqui é para o spinner
 import { Oval } from 'react-loader-spinner'
 
+import { useAuth } from "../../context/AuthContext";
+
 function CreateDenuncia() {
+
+    const {token} = useAuth();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -38,10 +42,13 @@ function CreateDenuncia() {
         };
 
         try {
+            console.log("tokenzinho123", token)
+            console.log("denunciaBody", denunciaBody)
             // Fazendo a requisição para a API
             const response = await fetch('http://localhost:8080/denuncias', {
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(denunciaBody), // Envia os dados como JSON no corpo da requisição

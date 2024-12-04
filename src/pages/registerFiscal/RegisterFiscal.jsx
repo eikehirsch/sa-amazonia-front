@@ -7,10 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 //Isto aqui é para o spinner
 import { Oval } from 'react-loader-spinner'
 
+import { useAuth } from "../../context/AuthContext";
+
 function Register() {
+
+  const {token} = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [fiscalUsername, setFiscalUsername] = useState();
   const [fiscalName, setFiscalName] = useState();
   const [fiscalEmail, setFiscalEmail] = useState();
   const [fiscalCpf, setFiscalCpf] = useState();
@@ -26,6 +31,8 @@ function Register() {
 
     // Criando o objeto biologoData com os valores dos states
     const fiscalBody = {
+      username: fiscalUsername,
+      role: "fiscal",
       name: fiscalName,
       email: fiscalEmail,
       cpf: fiscalCpf,
@@ -37,6 +44,7 @@ function Register() {
       isActive: true
     };
 
+    console.log("tokenzinho123", token)
     console.log('fiscalBody', fiscalBody)
 
     try {
@@ -44,6 +52,7 @@ function Register() {
       const response = await fetch('http://localhost:8080/usuarios/', {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(fiscalBody), // Envia os dados como JSON no corpo da requisição
@@ -80,6 +89,10 @@ function Register() {
         <h1 className="register-title">CADASTRO DE FISCAL</h1>
         <p className="paragraph">Preenche os campos abaixo para concluir o cadastro do novo fiscal</p>
         <div className="inputs-container">
+        <div className="input-container">
+            <img className='register-input-icon' src="./username-icon.png" alt="" />
+            <input onChange={(e) => setFiscalUsername(e.target.value)} className='input-register' type="text" placeholder='Username do fiscal' />
+          </div>
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
             <input onChange={(e) => setFiscalName(e.target.value)} className='input-register' type="text" placeholder='Nome do fiscal' />

@@ -7,10 +7,15 @@ import 'react-toastify/dist/ReactToastify.css';
 //Isto aqui é para o spinner
 import { Oval } from 'react-loader-spinner'
 
+import { useAuth } from "../../context/AuthContext";
+
 function Register() {
+
+    const { token } = useAuth();
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [biologistUsername, setFiscalUsername] = useState();
     const [biologistName, setBiologistName] = useState();
     const [biologistEmail, setBiologistEmail] = useState();
     const [biologistCpf, setBiologistCpf] = useState();
@@ -26,6 +31,8 @@ function Register() {
 
         // Criando o objeto biologoData com os valores dos states
         const biologistBody = {
+            username: biologistUsername,
+            role: "biologo",
             name: biologistName,
             email: biologistEmail,
             cpf: biologistCpf,
@@ -44,6 +51,7 @@ function Register() {
             const response = await fetch('http://localhost:8080/usuarios/', {
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(biologistBody), // Envia os dados como JSON no corpo da requisição
@@ -80,6 +88,10 @@ function Register() {
                 <h1 className="register-title">CADASTRO DE BIÓLOGO</h1>
                 <p className="paragraph">Preenche os campos abaixo para concluir o cadastro do novo biólogo</p>
                 <div className="inputs-container">
+                    <div className="input-container">
+                        <img className='register-input-icon' src="./username-icon.png" alt="" />
+                        <input onChange={(e) => setFiscalUsername(e.target.value)} className='input-register' type="text" placeholder='Username do biólogo' />
+                    </div>
                     <div className="input-container">
                         <img className='register-input-icon' src="./username-icon.png" alt="" />
                         <input onChange={(e) => setBiologistName(e.target.value)} className='input-register' type="text" placeholder='Nome do biólogo' />
