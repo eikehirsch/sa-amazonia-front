@@ -1,20 +1,20 @@
 import React from 'react'
-import "./PopupDeletarFuncionario.css"
+import "./PopupAtivarFuncionario.css"
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuth } from "../../context/AuthContext";
 
-function PopupDeletarFuncionario({ funcionario, toggleDeletarPopup, setIsPopupDeletarOpen, setIsFuncionarioFoiDesativado }) {
+function PopupAtivarFuncionario({ funcionario, toggleAtivarPopup, setIsPopupAtivarOpen, setIsFuncionarioFoiAtivado }) {
 
     const {token} = useAuth();
     
-    const desativarFuncionar = async () => {
+    const ativarFuncionar = async () => {
         // Vai conectar com a rota do controller para deletar o funcionario
 
         console.log("eitaaaaa", funcionario.id)
-        console.log("tokenzinho do popup deletar", token)
+        console.log("tokenzinho do popup ativar", token)
 
         try {
             const response = await fetch(`http://localhost:8080/usuarios/${funcionario.id}/status`, {
@@ -23,12 +23,12 @@ function PopupDeletarFuncionario({ funcionario, toggleDeletarPopup, setIsPopupDe
                     'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
                     'Content-Type': 'application/json',
                 },
-                body: false, // Envia os dados como JSON no corpo da requisição
+                body: true, // Envia os dados como JSON no corpo da requisição
             });
 
             if (response.ok) {
-                const notify = () => toast.success('Usuário desativado com sucesso!', { position: "top-center", autoClose: 3000 });
-                setIsFuncionarioFoiDesativado(true);
+                const notify = () => toast.success('Usuário ativado com sucesso!', { position: "top-center", autoClose: 3000 });
+                setIsFuncionarioFoiAtivado(true);
                 notify();
 
             } else {
@@ -40,18 +40,18 @@ function PopupDeletarFuncionario({ funcionario, toggleDeletarPopup, setIsPopupDe
             notify();
         }
 
-        setIsPopupDeletarOpen(false);
+        setIsPopupAtivarOpen(false);
     }
 
     return (
-        <div className="overlay-delete">
-            <div className="popup-delete">
-                <h2 className='popup-delete-title'>Você tem certeza que quer desativar o funcionário <p className='funcionario-delete-name'>{funcionario.name}</p>?</h2>
-                <button className='popup-delete-button' onClick={() => desativarFuncionar()}>Desativar</button>
-                <button className='popup-cancel-button' onClick={() => setIsPopupDeletarOpen(false)}>Cancelar</button>
+        <div className="overlay-activate">
+            <div className="popup-activate">
+                <h2 className='popup-activate-title'>Você tem certeza que quer ativar o funcionário <p className='funcionario-delete-name'>{funcionario.name}</p>?</h2>
+                <button className='popup-activate-button' onClick={() => ativarFuncionar()}>Ativar</button>
+                <button className='popup-activate-cancel-button' onClick={() => setIsPopupAtivarOpen(false)}>Cancelar</button>
             </div>
         </div>
     )
 }
 
-export default PopupDeletarFuncionario
+export default PopupAtivarFuncionario

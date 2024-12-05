@@ -9,7 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 //Isto aqui é para o spinner
 import { Oval } from 'react-loader-spinner'
 
+import { useAuth } from "../../context/AuthContext";
+
 function Register() {
+
+    const { token } = useAuth();
 
     // Obtendo o parâmetro id da URL
     const { id } = useParams();
@@ -20,7 +24,13 @@ function Register() {
 
     const getFuncionario = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/usuarios/${id}`);
+            const response = await fetch(`http://localhost:8080/usuarios/${id}`, {
+                method: 'GET',  // Define o método da requisição
+                headers: {
+                    'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
+                    'Content-Type': 'application/json'  // Define o tipo de conteúdo (opcional)
+                }
+            });
             const data = await response.json();
             setFuncionario(data || []);  // Ajuste conforme necessário
         } catch (erro) {
@@ -43,13 +53,14 @@ function Register() {
             const response = await fetch(`http://localhost:8080/usuarios/${id}`, {
                 method: 'PATCH',
                 headers: {
+                    'Authorization': `Bearer ${token}`,  // Adiciona o token ao cabeçalho
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(funcionarioBody), // Envia os dados como JSON no corpo da requisição
             });
 
             if (response.ok) {
-                const notify = () => toast.success('Denúncia criada com sucesso!', { position: "top-center", autoClose: 3000 });
+                const notify = () => toast.success('Biólogo editado com sucesso!', { position: "top-center", autoClose: 3000 });
                 notify();
 
             } else {
@@ -57,7 +68,7 @@ function Register() {
             }
 
         } catch (erro) {
-            const notify = () => toast.error('Falha ao criar um biólogo! Tente mais tarde.', { position: "top-center", autoClose: 3000 });
+            const notify = () => toast.error('Falha ao editar um biólogo! Tente mais tarde.', { position: "top-center", autoClose: 3000 });
             notify();
         }
         finally {

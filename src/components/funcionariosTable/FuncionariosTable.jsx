@@ -8,8 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import { useNavigate } from 'react-router-dom';
+
 import PopupGerenciarFuncionario from '../popupGerenciarFuncionario/PopupGerenciarFuncionario';
 import PopupDeletarFuncionario from '../popupDeletarFuncionario/PopupDeletarFuncionario';
+import PopupAtivarFuncionario from '../popupAtivarFuncionario/PopupAtivarFuncionario'
 
 import { useAuth } from "../../context/AuthContext";
 
@@ -17,9 +20,11 @@ import "./FuncionariosTable.css"
 
 export default function BasicTable() {
 
-    const {token} = useAuth();
+    const navigate = useNavigate();
+    const { token } = useAuth();
 
     const [isFuncionarioFoiDesativado, setIsFuncionarioFoiDesativado] = useState(false);
+    const [isFuncionarioFoiAtivado, setIsFuncionarioFoiAtivado] = useState(true);
 
     const [isPopupGerenciarOpen, setIsPopupGerenciarOpen] = useState(false);
     const [selectedGerenciarFuncionario, setSelectedGerenciarFuncionario] = useState();
@@ -60,23 +65,19 @@ export default function BasicTable() {
             setFuncionarios(data || []);  // Ajuste conforme necessário
         } catch (erro) {
             console.error(erro);
-        } 
+        }
     };
 
     const handleEditFuncionario = (funcionario) => {
+        console.log('funcionario', funcionario)
         // Navega para a página /edit-fiscal passando o ID do funcionário como parâmetro
-        if (funcionario.tipo == "FISCAL") navigate(`/edit-fiscal/${funcionario.id}`);
-        if (funcionario.tipo == "BIOLOGO") navigate(`/edit-biologo/${funcionario.id}`);
+        if (funcionario.tipo == "fiscal") navigate(`/edit-fiscal/${funcionario.id}`);
+        if (funcionario.tipo == "biologo") navigate(`/edit-biologo/${funcionario.id}`);
     };
 
     useEffect(() => {
         getFuncionarios();
-    }, [isFuncionarioFoiDesativado]);
-
-    useEffect(() => {
-        console.log('isPopupDeletarOpen', isPopupDeletarOpen)
-    }, [selectedDeletarFuncionario])
-
+    }, [isFuncionarioFoiDesativado, isFuncionarioFoiAtivado]);
 
     return (
         <TableContainer component={Paper}>
@@ -124,6 +125,7 @@ export default function BasicTable() {
                     )}
                     {isPopupGerenciarOpen && <PopupGerenciarFuncionario funcionario={selectedGerenciarFuncionario} toggleGerenciarPopup={toggleGerenciarPopup} />}
                     {isPopupDeletarOpen && <PopupDeletarFuncionario setIsFuncionarioFoiDesativado={setIsFuncionarioFoiDesativado} funcionario={selectedDeletarFuncionario} toggleDeletarPopup={toggleDeletarPopup} setIsPopupDeletarOpen={setIsPopupDeletarOpen} />}
+                    {isPopupAtivarOpen && <PopupAtivarFuncionario setIsFuncionarioFoiAtivado={setIsFuncionarioFoiAtivado} funcionario={selectedAtivarFuncionario} toggleAtivarPopup={toggleAtivarPopup} setIsPopupAtivarOpen={setIsPopupAtivarOpen} />}
                 </TableBody>
             </Table>
         </TableContainer>
