@@ -20,8 +20,6 @@ function Login() {
 
     const logar = async () => {
 
-        console.log('jacu chupeteira', isAuthenticated())
-
         const loginBody = {
             email: email,
             password: userPassword
