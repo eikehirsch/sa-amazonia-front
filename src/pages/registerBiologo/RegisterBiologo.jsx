@@ -1,6 +1,8 @@
 import "./RegisterBiologo.css"
 import { Link } from "react-router-dom"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,6 +14,8 @@ import { useAuth } from "../../context/AuthContext";
 function Register() {
 
     const { token } = useAuth();
+
+    const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -60,6 +64,7 @@ function Register() {
             if (response.ok) {
                 const notify = () => toast.success('Biólogo registrado com sucesso!', { position: "top-center", autoClose: 3000 });
                 notify();
+                navigate("/funcionarios")
 
             } else {
                 throw new Error();

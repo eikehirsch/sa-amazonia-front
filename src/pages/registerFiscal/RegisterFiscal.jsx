@@ -2,7 +2,9 @@ import { Link } from "react-router-dom"
 import "./RegisterFiscal.css"
 import { useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
+import InputMask from 'react-input-mask'; // Importando o InputMask
 
 //Isto aqui é para o spinner
 import { Oval } from 'react-loader-spinner'
@@ -11,7 +13,9 @@ import { useAuth } from "../../context/AuthContext";
 
 function Register() {
 
-  const {token} = useAuth();
+  const navigate = useNavigate();
+
+  const { token } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,9 +39,9 @@ function Register() {
       role: "fiscal",
       name: fiscalName,
       email: fiscalEmail,
-      cpf: fiscalCpf,
+      cpf: fiscalCpf.replace(/\D/g, ''),
       address: fiscalAddress,
-      phone: fiscalPhone,
+      phone: fiscalPhone.replace(/\D/g, ''),
       areaWork: fiscalAreaWork,
       password: fiscalPassword,
       tipo: "FISCAL",
@@ -61,6 +65,7 @@ function Register() {
       if (response.ok) {
         const notify = () => toast.success('Fiscal registrado com sucesso!', { position: "top-center", autoClose: 3000 });
         notify();
+        navigate("/funcionarios")
 
       } else {
         throw new Error();
@@ -89,7 +94,7 @@ function Register() {
         <h1 className="register-title">CADASTRO DE FISCAL</h1>
         <p className="paragraph">Preenche os campos abaixo para concluir o cadastro do novo fiscal</p>
         <div className="inputs-container">
-        <div className="input-container">
+          <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
             <input onChange={(e) => setFiscalUsername(e.target.value)} className='input-register' type="text" placeholder='Username do fiscal' />
           </div>
@@ -103,7 +108,20 @@ function Register() {
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
-            <input onChange={(e) => setFiscalCpf(e.target.value)} className='input-register' type="text" placeholder='CPF' />
+            <InputMask
+              mask="999.999.999-99" // Máscara do CPF
+              value={fiscalCpf} // Valor do CPF
+              onChange={(e) => setFiscalCpf(e.target.value)} // Atualizando o estado
+            >
+              {(inputProps) => (
+                <input
+                  {...inputProps} // Passando as propriedades para o input
+                  className='input-register'
+                  type="text"
+                  placeholder="CPF"
+                />
+              )}
+            </InputMask>
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
@@ -111,7 +129,20 @@ function Register() {
           </div>
           <div className="input-container">
             <img className='register-input-icon' src="./username-icon.png" alt="" />
-            <input onChange={(e) => setFiscalPhone(e.target.value)} className='input-register' type="text" placeholder='Telefone de contato' />
+            <InputMask
+              mask="(99) 9 9999-9999" // Máscara de telefone
+              value={fiscalPhone} // Valor do telefone
+              onChange={(e) => setFiscalPhone(e.target.value)} // Atualizando o estado
+            >
+              {(inputProps) => (
+                <input
+                  {...inputProps} // Passando as propriedades para o input
+                  className='input-register'
+                  type="text"
+                  placeholder="Telefone de contato"
+                />
+              )}
+            </InputMask>
           </div>
           <div className="input-container">
             <select className="input-select-fiscal-areaWork" id="estados" value={fiscalAreaWork} onChange={(e) => setFiscalAreaWork(e.target.value)}>

@@ -24,7 +24,7 @@ export default function BasicTable() {
     const { token } = useAuth();
 
     const [isFuncionarioFoiDesativado, setIsFuncionarioFoiDesativado] = useState(false);
-    const [isFuncionarioFoiAtivado, setIsFuncionarioFoiAtivado] = useState(true);
+    const [isFuncionarioFoiAtivado, setIsFuncionarioFoiAtivado] = useState(false);
 
     const [isPopupGerenciarOpen, setIsPopupGerenciarOpen] = useState(false);
     const [selectedGerenciarFuncionario, setSelectedGerenciarFuncionario] = useState();
@@ -108,8 +108,11 @@ export default function BasicTable() {
                                     {funcionario.isActive ? (
                                         <>
                                             <div className='gerenciar-funcionario-container'>
-                                                <button onClick={() => toggleGerenciarPopup(funcionario)} className='designar-funcionario-button'>Designar à denúncia</button>
-                                                <button onClick={() => handleEditFuncionario(funcionario)} className='designar-funcionario-button'>Editar funcionário</button>
+                                                {funcionario.tipo != "admin" && (
+                                                    <>
+                                                        {/* <button onClick={() => toggleGerenciarPopup(funcionario)} className='designar-funcionario-button'>Designar à denúncia</button> */}
+                                                        <button onClick={() => handleEditFuncionario(funcionario)} className='designar-funcionario-button'>Editar funcionário</button></>
+                                                )}
                                                 <button onClick={() => toggleDeletarPopup(funcionario)} className='deletar-funcionario-button'>Desativar funcionário</button>
                                             </div></>
                                     ) : <>
@@ -123,7 +126,7 @@ export default function BasicTable() {
                             <TableCell colSpan={5} align="center">Nenhuma denúncia registrada.</TableCell>
                         </TableRow>
                     )}
-                    {isPopupGerenciarOpen && <PopupGerenciarFuncionario funcionario={selectedGerenciarFuncionario} toggleGerenciarPopup={toggleGerenciarPopup} />}
+                    {/* {isPopupGerenciarOpen && <PopupGerenciarFuncionario funcionario={selectedGerenciarFuncionario} toggleGerenciarPopup={toggleGerenciarPopup} />} */}
                     {isPopupDeletarOpen && <PopupDeletarFuncionario setIsFuncionarioFoiDesativado={setIsFuncionarioFoiDesativado} funcionario={selectedDeletarFuncionario} toggleDeletarPopup={toggleDeletarPopup} setIsPopupDeletarOpen={setIsPopupDeletarOpen} />}
                     {isPopupAtivarOpen && <PopupAtivarFuncionario setIsFuncionarioFoiAtivado={setIsFuncionarioFoiAtivado} funcionario={selectedAtivarFuncionario} toggleAtivarPopup={toggleAtivarPopup} setIsPopupAtivarOpen={setIsPopupAtivarOpen} />}
                 </TableBody>

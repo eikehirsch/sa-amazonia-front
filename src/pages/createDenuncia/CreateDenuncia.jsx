@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useNavigate } from "react-router-dom";
 import "./CreateDenuncia.css"
 import Navbar from "../../components/navbar/Navbar"
 import CreateDenunciaDatePicker from "../../components/createDenunciaDatepicker/CreateDenunciaDatePicker"
@@ -14,7 +14,9 @@ import { useAuth } from "../../context/AuthContext";
 
 function CreateDenuncia() {
 
-    const {token} = useAuth();
+    const navigate = useNavigate();
+
+    const { token } = useAuth();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -57,6 +59,7 @@ function CreateDenuncia() {
             if (response.ok) {
                 const notify = () => toast.success('Denúncia criada com sucesso!', { position: "top-center", autoClose: 3000 });
                 notify();
+                navigate("/denuncias")
 
             } else {
                 throw new Error();

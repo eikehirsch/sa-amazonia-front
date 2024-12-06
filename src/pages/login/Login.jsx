@@ -69,7 +69,7 @@ function Login() {
                     </div>
                     <div className="input-container">
                         <img className='login-input-icon' src="./password-icon.png" alt="" />
-                        <input onChange={(e) => setUserPassword(e.target.value)} className='input-login' type="text" placeholder='Senha' />
+                        <input onChange={(e) => setUserPassword(e.target.value)} className='input-login' type="password" placeholder='Senha' />
                     </div>
                 </div>
                 <button onClick={() => logar()} className="login-button">

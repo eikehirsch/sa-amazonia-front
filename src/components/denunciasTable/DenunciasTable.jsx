@@ -50,6 +50,7 @@ export default function BasicTable() {
                         <TableCell align="center">BIÓLOGO RESPONSÁVEL</TableCell>
                         <TableCell align="center">STATUS</TableCell>
                         <TableCell align="center">DATA DE REGISTRO</TableCell>
+                        <TableCell align="center">GERENCIAR</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -81,6 +82,9 @@ export default function BasicTable() {
                                 </TableCell>
                                 <TableCell align="center">
                                     {denuncia.date || 'Data não informada'}
+                                </TableCell>
+                                <TableCell align="center">
+                                    Designar funcionário
                                 </TableCell>
                             </TableRow>
                         ))

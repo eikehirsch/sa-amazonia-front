@@ -12,8 +12,10 @@ import "./CreateDenunciaDatePicker.css"
 
 function CreateDenunciaDatePicker({dateDenuncia, setDateDenuncia}) {
 
+    const today = new Date(); // Captura o dia atual
+
     return (
-        <DatePicker className="custom-datepicker" locale="pt-BR" dateFormat="dd/MM/yyyy" selected={dateDenuncia} onChange={(date) => setDateDenuncia(date)} />
+        <DatePicker className="custom-datepicker" locale="pt-BR" dateFormat="dd/MM/yyyy" selected={dateDenuncia} maxDate={today} onChange={(date) => setDateDenuncia(date)} />
     );
 }
 
