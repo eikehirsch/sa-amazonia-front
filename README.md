@@ -9,9 +9,9 @@
 
 * [Descrição do Projeto](#Descrição-do-Projeto)
 
-Este projeto consiste em uma aplicação para o registro, controle e análise de denúncias ambientais, permitindo que usuários anônimos possam reportar problemas relacionados ao meio ambiente. O sistema suporta três tipos de usuários, cada um com responsabilidades específicas no gerenciamento de denúncias.
+Este projeto consiste em uma aplicação para o registro, controle e análise de denúncias ambientais, permitindo que usuários anônimos possam reportar crimes relacionados ao meio ambiente. O sistema suporta três tipos de usuários - admin, fiscal e biólogo - cada um com responsabilidades específicas na utilização da aplicação.
 
-Para executar propriamente a aplicação, é necessário iniciar o back-end com o comando "npm start" e, em seguida, iniciar o front-end também com o comando "npm start". Essa executação funciona igualmente no Windows com os mesmos comandos.
+Para executar propriamente a aplicação, é necessário inicializar o back-end e, em seguida, inicializar o front-end também com o comando "npm run dev". 
 
 * [Requisitos Funcionais](#Requisitos-funcionais)
 
