@@ -28,7 +28,7 @@ Para executar propriamente a aplicação, é necessário inicializar o back-end 
 
  `Biblioteca MUI: biblioteca de front-end para diversos fins. Neste projeto, ela foi empregada para desenvolver um accordion, ou seja, uma lista de cards que podem ser expandidos via drop-down.`
 
- `React-datepicker e date-fns: utilizado para criar um calendário que é utilizado para determinar o dia do ocorrido na criação de uma nova denúncia.`
+ `React-datepicker e date-fns: bibliotecas utilizadas para criar um calendário que é utilizado para determinar o dia do ocorrido na criação de uma nova denúncia.`
  
  `Reat-router-dom: biblioteca do React para administrar a navegação entre páginas da aplicação.`
 
@@ -38,7 +38,7 @@ Para executar propriamente a aplicação, é necessário inicializar o back-end 
 
  `React-loader-spinner: biblioteca utilizada para renderizar condicionalmente um spinner enquanto funções assíncronas ainda não foram concluídas.`
 
- `react-input-mask: Biblioteca utilizada para criar máscaras de valores para CPF e telefone nos inputs de criação de usuários.`
+ `React-input-mask: Biblioteca utilizada para criar máscaras de valores para CPF e telefone nos inputs de criação de usuários.`
  
 * [Introdução](#Introducao)
 
