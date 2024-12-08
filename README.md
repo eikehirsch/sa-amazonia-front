@@ -22,17 +22,13 @@ Para executar propriamente a aplicação, é necessário inicializar o back-end 
  Biólogo: Responsável por fornecer um parecer técnico sobre o impacto ambiental da denúncia.
  Admin: Tem controle total sobre a aplicação, podendo registrar ou deletar fiscais e biólogos.`
  
+* [Principais ferramentas utilizadas](#Ferramentas-utilizadas)
+
+ `React.js: para componentização e organização das telas.`
+
+ `Styled-Component: biblioteca do React para estilizar os componentes em escopo fechado com o intuito de não vazar as classes e estilos para outros componentes.`
+ 
  `Reat-router-dom: biblioteca do React para administrar a navegação entre páginas da aplicação.`
-
- `React-hook-form: biblioteca para efetuar e controlar formulários de React.`
-
- `React-apexcharts: biblioteca para criar, renderizar e controlar gráficos e tabelas.`
-
- `React-swiper: biblioteca para criar e renderizar componentes do tipo carrossel.`
-
- `React-modal: biblioteca para criar e configurar telas do tipo modal, como o alerta de utilização de cookies.`
-
- `React-spinners: biblioteca para criar e configurar ícones de loading para sinalizar carregamentos.`
  
 * [Introdução](#Introducao)
 
