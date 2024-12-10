@@ -42,6 +42,7 @@
     padding: 10px;
     border-radius: 6px;
     width: 50%;
+    font-size: 18px;
 }
 
 .input-create-denuncia {
@@ -81,7 +82,8 @@
 }
 
 .input-create-denuncia::placeholder {
-    color: rgb(63, 63, 63)
+    color: rgb(63, 63, 63);
+    font-size: 14px;
 }
 
 .input-create-denuncia:focus {

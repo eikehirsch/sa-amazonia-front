@@ -1,0 +1,14 @@
+.button-designar-funcionario {
+    border: 1px solid white;
+    background-color: rgb(100, 43, 175);
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.button-designar-funcionario:hover {
+    background-color:white;
+    border: 1px solid rgb(100, 43, 175);
+    color: rgb(100, 43, 175);
+}

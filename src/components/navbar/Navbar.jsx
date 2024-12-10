@@ -1,14 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Navbar.css"
+import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../context/AuthContext";
 
 function Navbar() {
 
+  const navigate = useNavigate();
+
   const { isAuthenticated, logout } = useAuth();
 
-  console.log("isAuthenticated", isAuthenticated());
+  const test = () => {
+    logout();
+    navigate("/")
+  }
 
   return (
     <div className='navbar'>
@@ -29,7 +35,7 @@ function Navbar() {
         <Link to="/">Contato</Link>
         <Link to="/create-denuncia">Denunciar</Link>
         {isAuthenticated() == true && (
-          <Link onClick={() => logout()}>Sair</Link>
+          <Link onClick={() => test()}>Sair</Link>
         )}
 
       </div>

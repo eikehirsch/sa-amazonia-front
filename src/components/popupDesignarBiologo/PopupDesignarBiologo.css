@@ -1,0 +1,92 @@
+.overlay-designate-biologo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(224, 223, 223, 0.4); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-designate-biologo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente do card */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 900px; /* Largura do card */
+    color: rgb(100, 43, 175); /* Texto opaco */
+    text-align: center;
+    border: 2px solid black;
+}
+
+.popup-designate-title-biologo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.funcionario-designate-name-biologo {
+    color: black;
+    margin-left: 6px;
+}
+
+.popup-designate-button-biologo {
+    width: 50%;
+    padding: 6px;
+    background-color: rgb(100, 43, 175);
+    border: 1px solid rgb(100, 43, 175);
+    color: white;
+    border-radius: 4px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.popup-designate-cancel-button-biologo {
+    width: 50%;
+    padding: 6px;
+    background-color: white;
+    border: 1px solid rgb(100, 43, 175);
+    color: rgb(100, 43, 175);
+    border-radius: 4px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.lista-biologos {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.biologo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.biologo-name {
+    min-width: 350px;
+}
+
+.biologo-designar-button {
+    border: 1px solid white;
+    background-color: rgb(100, 43, 175);
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.biologo-designar-button:hover {
+    background-color:white;
+    border: 1px solid rgb(100, 43, 175);
+    color: rgb(100, 43, 175);
+}

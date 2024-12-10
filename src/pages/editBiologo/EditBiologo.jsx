@@ -2,6 +2,7 @@ import "./EditBiologo.css"
 import { useState, useEffect } from "react"
 
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +13,8 @@ import { Oval } from 'react-loader-spinner'
 import { useAuth } from "../../context/AuthContext";
 
 function Register() {
+
+    const navigate = useNavigate();
 
     const { token } = useAuth();
 
@@ -62,6 +65,7 @@ function Register() {
             if (response.ok) {
                 const notify = () => toast.success('Biólogo editado com sucesso!', { position: "top-center", autoClose: 3000 });
                 notify();
+                navigate("/funcionarios")
 
             } else {
                 throw new Error();
@@ -70,6 +74,7 @@ function Register() {
         } catch (erro) {
             const notify = () => toast.error('Falha ao editar um biólogo! Tente mais tarde.', { position: "top-center", autoClose: 3000 });
             notify();
+
         }
         finally {
             setIsLoading(false); // Começa a carregar (mostrar o spinner)

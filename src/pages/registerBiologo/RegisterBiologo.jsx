@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import InputMask from 'react-input-mask'; // Importando o InputMask
 
 //Isto aqui é para o spinner
 import { Oval } from 'react-loader-spinner'
@@ -39,9 +40,9 @@ function Register() {
             role: "biologo",
             name: biologistName,
             email: biologistEmail,
-            cpf: biologistCpf,
+            cpf: biologistCpf.replace(/\D/g, ''),
             address: biologistAddress,
-            phone: biologistPhone,
+            phone: biologistPhone.replace(/\D/g, ''),
             areaWork: biologistAreaWork,
             password: biologistPassword,
             tipo: "BIOLOGO",
@@ -107,7 +108,20 @@ function Register() {
                     </div>
                     <div className="input-container">
                         <img className='register-input-icon' src="./username-icon.png" alt="" />
-                        <input onChange={(e) => setBiologistCpf(e.target.value)} className='input-register' type="text" placeholder='CPF' />
+                        <InputMask
+                            mask="999.999.999-99" // Máscara do CPF
+                            value={biologistCpf} // Valor do CPF
+                            onChange={(e) => setBiologistCpf(e.target.value)} // Atualizando o estado
+                        >
+                            {(inputProps) => (
+                                <input
+                                    {...inputProps} // Passando as propriedades para o input
+                                    className='input-register'
+                                    type="text"
+                                    placeholder="CPF"
+                                />
+                            )}
+                        </InputMask>
                     </div>
                     <div className="input-container">
                         <img className='register-input-icon' src="./username-icon.png" alt="" />
@@ -115,7 +129,20 @@ function Register() {
                     </div>
                     <div className="input-container">
                         <img className='register-input-icon' src="./username-icon.png" alt="" />
-                        <input onChange={(e) => setBiologistPhone(e.target.value)} className='input-register' type="text" placeholder='Telefone de contato' />
+                        <InputMask
+                            mask="(99) 9 9999-9999" // Máscara de telefone
+                            value={biologistPhone} // Valor do telefone
+                            onChange={(e) => setBiologistPhone(e.target.value)} // Atualizando o estado
+                        >
+                            {(inputProps) => (
+                                <input
+                                    {...inputProps} // Passando as propriedades para o input
+                                    className='input-register'
+                                    type="text"
+                                    placeholder="Telefone de contato"
+                                />
+                            )}
+                        </InputMask>
                     </div>
                     <div className="input-container">
                         <select className="input-select-biologist-areaWork" id="estados" value={biologistAreaWork} onChange={(e) => setBiologistAreaWork(e.target.value)}>

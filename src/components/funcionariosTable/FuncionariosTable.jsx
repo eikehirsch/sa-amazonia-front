@@ -77,6 +77,8 @@ export default function BasicTable() {
 
     useEffect(() => {
         getFuncionarios();
+        setIsFuncionarioFoiAtivado(false);
+        setIsFuncionarioFoiDesativado(false);
     }, [isFuncionarioFoiDesativado, isFuncionarioFoiAtivado]);
 
     return (
